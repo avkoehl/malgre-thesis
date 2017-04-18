@@ -1,0 +1,21 @@
+.flexcontainer {
+   display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: row;
+   flex-direction: row;
+}
+
+//#sidebar {
+//  width: 150px;
+//  height: 90vh;
+  //background-color: #17729a;
+//  background-color: #afc0d7;
+//  float: left;
+//}
+
+#main {
+  width: 100vw; 
+  height: 100vh;
+  padding: 0;
+  float: right;
+}

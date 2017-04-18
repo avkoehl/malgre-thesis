@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Malgre Nous </title>
+  <link rel="stylesheet" href="http://unpkg.com/leaflet@1.0.3/dist/leaflet.css"/>
+  <link rel="stylesheet" href="./style/mystyle.css"/>
+  <link rel="stylesheet" href="./style/MarkerCluster.css" />
+  <link rel="stylesheet" href="./style/MarkerCluster.Default.css" />
+
+  <script src="http://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+  <script src="./scripts/leaflet.edgebuffer.js"></script>
+  <script src="./scripts/jquery-2.1.1.min.js"></script>
+  <script src="./scripts/leaflet.markercluster-src.js"></script>
+  <script src="./scripts/all.js"></script>
+
+  <style>
+    html, body, #map{ width:100%; height:95%; }
+  </style>
+</head>
+
+<body style="margin: 0 auto"> 
+
+  <!-- make this actual nav bar www.adam-bray.com/2017/02/17/easy-html-5-css-3-navigation-menu/ -->
+  <ul class="malgre">
+    <li class="malgre">  <a style="text-decoration: none" href="http://malgrenous.com">Home</a> </li>  <!-- cluster, timeline, clickeurope, gallery, italy, searchmap, ... -->
+    <li class="malgre">  <a style="text-decoration: none" href="http://malgrenous.com/borders.html">borders </a> </li> <!-- introduciton, methodology/technologies used -->
+    <li class="malgre">  <a class="active" style="text-decoration: none" href="http://malgrenous.com/timeline.html">timeline </a> </li> <!-- introduciton, methodology/technologies used -->
+    <li class="malgre">  <a style="text-decoration: none" href="http://malgrenous.com/europe.html">europe </a> </li> <!-- sources, files -->
+    <li class="malgre">  <a style="text-decoration: none" href="http://malgrenous.com/gallery.html">gallery </a> </li> <!-- sources, files -->
+    <li class="malgre">  <a style="text-decoration: none" href="http://malgrenous.com/intro.html">intro </a> </li> <!-- sources, files -->
+    <li class="malgre">  <a style="text-decoration: none" href="http://malgrenous.com/sources.html">sources </a> </li> <!-- sources, files -->
+    <li class="malgre">  <a style="text-decoration: none" href="http://malgrenous.com/files.html">files </a> </li> <!-- sources, files -->
+  </ul>
+
+<!--  <div style="float:left; width:20%; position: absolute; z-index:100">
+  <h1> MALGRE NOUS </h1>
+  </div> -->
+
+  <div id="map"></div>
+
+
+  <script>
+  var map = L.map('map', {zoomControl: false}).setView([50.06, 19.94], 5);
+  map.scrollWheelZoom.disable();
+  var year = 1942;
+
+  L.tileLayer('http://{s}.tile.openstreetmap.se/hydda/base/{z}/{x}/{y}.png', {
+    edgeBufferTiles: 2,
+  	maxZoom: 18,
+  	attribution: 'Tiles courtesy of <a href="http://openstreetmap.se/" target="_blank">OpenStreetMap Sweden</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(map);
+
+  L.control.zoom({
+    position:'topright'
+  }).addTo(map);
+ 
+  var MalgreNous = [{
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [28, 49]
+    },
+    "properties": {"date": "1942", "name": "Arthur"}
+  },{
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [30, 49]
+    },
+    "properties": {"date": "1943"}
+  },{
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [35, 49]
+    },
+    "properties": {"date": "1944"}
+  }];
+
+  var geojsonMarkerOptions = {
+    radius: 8,
+    fillColor: "#ff7800",
+    color: "#000",
+    weight: 1,
+    opacity: 1,
+    fillOpacity: 0.8
+  };
+
+  var content = '<table>';
+
+  function onEachFeature (feature, layer) {
+    if (feature.properties){
+      for (var p in feature.properties) {
+        content += '<tr><td>' + p + '</td><td>' + feature.properties[p] + '</td></tr>';
+      }
+      layer.bindPopup(content);
+    }
+  }
+
+  var myLayer = L.geoJson(false, {
+    onEachFeature: onEachFeature,
+    pointToLayer: function (feature, latlng) {
+      return L.circleMarker(latlng, geojsonMarkerOptions)}
+    });
+
+  var i;
+  for (i = 0; i < MalgreNous.length; ++i)
+  {
+    if (MalgreNous[i].properties.date == year)
+      myLayer.addData(MalgreNous[i]);
+  }
+
+  myLayer.addTo(map);
+
+
+    
+  
+
+
+
+  </script>
+</body>
+
+</html>

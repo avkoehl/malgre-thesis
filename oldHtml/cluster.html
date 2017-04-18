@@ -1,0 +1,48 @@
+<html>
+<head>
+  <title>Europe map using Leaflet</title>
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+  <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+  <link rel="stylesheet" href="MarkerCluster.css" />
+  <link rel="stylesheet" href="MarkerCluster.Default.css"/>
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+  <script src="http://arthurkoehl.com/jquery-2.1.1.min.js"></script>
+  <script src="leaflet.markercluster-src.js"></script>
+  <script src="all.js"></script>
+
+  <style>
+    #map{ width: 1000px; height: 500px; }
+  </style>
+</head>
+
+<body>
+  <div id="map"></div>
+
+
+
+  <script>
+  var map = L.map('map').setView([52.52, 14], 5);
+
+
+
+  // load a tile layer
+  L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	  maxZoom: 18,
+	  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(map);
+
+  var markers = L.markerClusterGroup();
+
+  for (var i = 0; i < addressPoints.length; i++) {
+    var a = addressPoints[i]
+    var marker = L.marker(new L.LatLng(a[0], a[1]));
+    markers.addLayer(marker);
+  }
+
+  map.addLayer(markers);
+    
+
+
+  </script>
+</body>
+</html>

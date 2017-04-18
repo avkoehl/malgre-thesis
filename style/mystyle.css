@@ -1,0 +1,40 @@
+ul.malgre {
+ list-style-type: none;
+ overflow: hidden;
+ margin: 0px;
+ padding: 0px;
+ //background-color: #17729A;
+ background-color: #333;
+}
+  
+li.malgre {
+  float: left;
+}
+
+li.malgre a{
+  display: block;
+	color: white;
+	text-align: center;
+  padding: 14px 16px;
+	text-decoration: none;
+}
+ 
+li.malgre a.active {
+	background-color: #AA3939;
+}
+  
+li.malgre a:hover:not(.active) {
+	background-color: #AA3939;
+}
+
+button.desc {
+  background-color: white;
+  border: 1px solid #333;
+  color: #17729a;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 4px 2px;
+}
