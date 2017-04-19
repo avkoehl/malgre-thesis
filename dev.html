@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="./style/MarkerCluster.css" />
   <link rel="stylesheet" href="./style/MarkerCluster.Default.css" />
   <link rel="stylesheet" href="./style/layout.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oxygen">
 
   <script src="./scripts/leaflet.js"></script>
   <script src="./scripts/leaflet.edgebuffer.js"></script>
@@ -39,18 +40,22 @@
 
 	<div id="map" style="width:80vw; height:100vh"></div> <!-- Map -->
 
-    	<div style="width:19vw; height:100vh; color:white; background-color:#17729A">
+    	<div style="width:19vw; height:100vh; color:white; background-color:#17729A; font-family:'Oxygen', sans-serif">
       	  <center><h3 style="padding:20px"> Malgre Nous </h3><center>
           <p style="padding:20px"> This is some text about the map you are looking at, make sure to use the control buttons in the top right corner when using this map </p>
           <center><button class="desc"> Show borders </button></center>
           <br>
 
           <center>
-          <input type="checkbox" name="1942"/>1942</br>
-          <input type="checkbox" name="1942"/>1943</br>
-          <input type="checkbox" name="1943"/>1944</br>
-          <input type="checkbox" name="1944"/>1945</br>
+          <form>
+          <input type="checkbox" id="1942" name="two"/>1942</br>
+          <input type="checkbox" id="1943" name="three"/>1943</br>
+          <input type="checkbox" id="1944" name="four"/>1944</br>
+          <input type="checkbox" id="1945" name="five"/>1945</br>
+          <input type="checkbox" id="All" name="all"/>All</br>
+          </form>
           </center>
+
 	</div> <!-- Side Bar -->
 
     </div> <!-- Flex Container -->
@@ -59,9 +64,11 @@
   
 
   <script>
-  var map = L.map('map', {zoomControl: false, layers: [markers]}).setView([47.06, 19.94], 5);
+  var map = L.map('map', {zoomControl: false}).setView([47.06, 19.94], 5);
   map.scrollWheelZoom.disable();
   var year = 1942;
+
+    
 
 
   L.easyButton({
@@ -112,21 +119,28 @@
       "type": "Point",
       "coordinates": [28, 49]
     },
-    "properties": {"date": "1942", "name": "Arthur"}
+    "properties": {"date": "1942", "record": "1000", "city": "city", "country": "country"}
   },{
     "type": "Feature",
     "geometry": {
       "type": "Point",
       "coordinates": [30, 49]
     },
-    "properties": {"date": "1943"}
+    "properties": {"date": "1943", "record": "1001", "city": "city", "country": "country"}
+  },{
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [32, 49]
+    },
+    "properties": {"date": "1944", "record": "1002", "city": "city", "country": "country"}
   },{
     "type": "Feature",
     "geometry": {
       "type": "Point",
       "coordinates": [35, 49]
     },
-    "properties": {"date": "1944"}
+    "properties": {"date": "1945", "record": "1003", "city": "city", "country": "country"}
   }];
 
   var geojsonMarkerOptions = {
@@ -138,12 +152,12 @@
     fillOpacity: 0.8
   };
 
-  var content = '<table>';
 
   function onEachFeature (feature, layer) {
+    var content = '<table>';
     if (feature.properties){
       for (var p in feature.properties) {
-        content += '<tr><td>' + p + '</td><td>' + feature.properties[p] + '</td></tr>';
+        content += '<tr><td>' + p + ': ' + '</td><td>' + feature.properties[p] + '</td></tr>';
       }
       layer.bindPopup(content);
     }
@@ -155,33 +169,108 @@
       return L.circleMarker(latlng, geojsonMarkerOptions)}
     });
 
-  var i;
-  for (i = 0; i < MalgreNous.length; ++i)
-  {
-    if (MalgreNous[i].properties.date == year)
-      myLayer.addData(MalgreNous[i]);
-  }
+ // for (i = 0; i < MalgreNous.length; ++i)
+ // {
+ //   if (MalgreNous[i].properties.date == year)
+ //     myLayer.addData(MalgreNous[i]);
+ // };
 
-  myLayer.addTo(map);
-  
-  var markers = L.markerClusterGroup();
-  for (var i = 0; i < addressPoiints.length; i++) {
-    var a  = addressPoints[i];
-    var marker = L.marker(new L.LatLng(a[0], a[1]));
-    markers.addLayer(marker);
-   }
-  var overlayMaps = {
-    "All Points": markers
+  document.getElementById('1942').onclick = function() 
+  {
+    if (document.forms[0].two.checked) {
+      for (var i =0; i < MalgreNous.length; i++) {
+        if (MalgreNous[i].properties.date === "1942") {
+          myLayer.addData(MalgreNous[i]);
+        }
+      }
+    }
+    else if (!document.forms[0].two.checked) {
+      myLayer.clearLayers();
+    }
   };
 
-  L.control.layers(overlayMaps).addTo(map);
+  document.getElementById('1943').onclick = function() 
+  {
+    if (document.forms[0].three.checked) {
+      for (var i =0; i < MalgreNous.length; i++) {
+        if (MalgreNous[i].properties.date === "1943") {
+          myLayer.addData(MalgreNous[i]);
+        }
+      }
+    }
+    else if (!document.forms[0].three.checked) {
+      myLayer.clearLayers();
+    }
+  };
 
-  
+  document.getElementById('1944').onclick = function() 
+  {
+    if (document.forms[0].four.checked) {
+      for (var i =0; i < MalgreNous.length; i++) {
+        if (MalgreNous[i].properties.date === "1944") {
+          myLayer.addData(MalgreNous[i]);
+        }
+      }
+    }
+    else if (!document.forms[0].four.checked) {
+      myLayer.clearLayers();
+    }
+  };
+  document.getElementById('1945').onclick = function() 
+  {
+    if (document.forms[0].five.checked) {
+      for (var i =0; i < MalgreNous.length; i++) {
+        if (MalgreNous[i].properties.date === "1945") {
+          myLayer.addData(MalgreNous[i]);
+        }
+      }
+    }
+    else if (!document.forms[0].five.checked) {
+      myLayer.clearLayers();
+    }
+  };
+  document.getElementById('All').onclick = function() 
+  {
+    if (document.forms[0].all.checked) {
+      for (var i =0; i < MalgreNous.length; i++) {
+          myLayer.addData(MalgreNous[i]);
+        }
+      }
+    else if (!document.forms[0].all.checked) {
+      myLayer.clearLayers();
+    }
+  };
 
-    
-  
+
+  myLayer.addTo(map);
+
+  </script>
+</body>
 
 
+
+  myLayer.addTo(map);
+
+  </script>
+</body>
+
+
+
+  myLayer.addTo(map);
+
+  </script>
+</body>
+
+
+
+  myLayer.addTo(map);
+
+  </script>
+</body>
+
+
+
+  myLayer.addTo(map);
 
   </script>
 </body>
