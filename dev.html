@@ -165,7 +165,7 @@
   myLayer.addTo(map);
   
   var markers = L.markerClusterGroup();
-  for (var i = 0; i < addressPoiints.length, i++) {
+  for (var i = 0; i < addressPoiints.length; i++) {
     var a  = addressPoints[i];
     var marker = L.marker(new L.LatLng(a[0], a[1]));
     markers.addLayer(marker);
