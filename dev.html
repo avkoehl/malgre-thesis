@@ -31,40 +31,32 @@
 
   <!-- make this actual nav bar www.adam-bray.com/2017/02/17/easy-html-5-css-3-navigation-menu/ -->
   <ul class="malgre">
-    <li class="malgre">  <a style="text-decoration: none" href="http://malgrenous.com">Home</a> </li>  <!-- cluster, timeline, clickeurope, gallery, italy, searchmap, ... -->
-    <li class="malgre">  <a style="text-decoration: none" href="http://malgrenous.com/borders.html">borders </a> </li> <!-- introduciton, methodology/technologies used -->
-    <li class="malgre">  <a style="text-decoration: none" href="http://malgrenous.com/europe.html">europe </a> </li> <!-- sources, files -->
-    <li class="malgre">  <a style="text-decoration: none" href="http://malgrenous.com/gallery.html">gallery </a> </li> <!-- sources, files -->
-    <li class="malgre">  <a style="text-decoration: none" href="http://malgrenous.com/intro.html">intro </a> </li> <!-- sources, files -->
-    <li class="malgre">  <a style="text-decoration: none" href="http://malgrenous.com/sources.html">sources </a> </li> <!-- sources, files -->
-    <li class="malgre">  <a style="text-decoration: none" href="http://malgrenous.com/files.html">files </a> </li> <!-- sources, files -->
     <li class="malgre">  <a class="active" style="text-decoration: none" href="http://malgrenous.com/dev.html">Dev </a> </li> <!-- sources, files -->
   </ul>
 
 
     <div id="container" style="display: -webkit-flex; display:flex; width: 100vw; height:100vh; flex-direction:row">
-    <div id="map" style="width:80vw; height:100vh"></div>
-    <div style="width:19vw; height:100vh; color:white; background-color:#17729A">
-      <center><h3 style="padding:20px"> Malgre Nous </h3><center>
-      <p style="padding:20px"> This is some text about the map you are looking at, make sure to use the control buttons in the top right corner when using this map </p>
-      <center><button class="desc"> Show borders </button></center>
-      <br>
 
-      <center>
-      <input type="checkbox" name="1942"/>1942</br>
-      <input type="checkbox" name="1942"/>1943</br>
-      <input type="checkbox" name="1943"/>1944</br>
-      <input type="checkbox" name="1944"/>1945</br>
-      </center>
-    </div>
-    </div>
+	<div id="map" style="width:80vw; height:100vh"></div> <!-- Map -->
 
+    	<div style="width:19vw; height:100vh; color:white; background-color:#17729A">
+      	  <center><h3 style="padding:20px"> Malgre Nous </h3><center>
+          <p style="padding:20px"> This is some text about the map you are looking at, make sure to use the control buttons in the top right corner when using this map </p>
+          <center><button class="desc"> Show borders </button></center>
+          <br>
+
+          <center>
+          <input type="checkbox" name="1942"/>1942</br>
+          <input type="checkbox" name="1942"/>1943</br>
+          <input type="checkbox" name="1943"/>1944</br>
+          <input type="checkbox" name="1944"/>1945</br>
+          </center>
+	</div> <!-- Side Bar -->
+
+    </div> <!-- Flex Container -->
 
 
   
-  <!--
-  <div id="map"></div>
-  -->
 
   <script>
   var map = L.map('map', {zoomControl: false}).setView([47.06, 19.94], 5);
