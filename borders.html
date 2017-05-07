@@ -60,8 +60,17 @@
     markers.addLayer(marker);
   }
 
+  var borderStyle = {
+    "color": "grey",
+    "weight": 1,
+    "opacity": 1,
+    "fillopacity": 0
+  }
+
   $.getJSON("./bordersGeoJson/April_30_1938.geojson", function(data) {
-    L.geoJSON(data).addTo(map);
+    L.geoJSON(data, {
+      style: borderStyle
+    }).addTo(map)
   });
 
   map.addLayer(markers);
