@@ -10,8 +10,8 @@
 .banner {
   margin: 0;
   width: 100%;
-  height: 100px;
-  background-image: url("vitebsk_cropped.jpg");
+  height: 200px;
+  background-image: url("banner.jpg");
 }
 
 
@@ -20,13 +20,27 @@
   top: 0;
   background: rgba(51,51,51,.8);
   width: 100%;
-  height: 100px;
+  height: 200px;
+  line-height: 250%;
+}
 
+.title {
+  margin: 20 auto;
   font-family: 'Anton', sans-serif;
-  line-height: 100px;
   text-align: center;
   color: white;
   font-size: 300%;
+  height: 200px;
+  text-shadow: -2px 0 #333, 0 2px #333, 2px 0 #333, 0 -2px #333;
+}
+
+.subtitle {
+  margin: 0 auto;
+  font-family: 'Anton', sans-serif;
+  line-height: 0px;
+  text-align: center;
+  color: white;
+  font-size: 50%;
   text-shadow: -2px 0 #333, 0 2px #333, 2px 0 #333, 0 -2px #333;
 }
 
