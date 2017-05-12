@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <title>Leaflet.timeline Example - Country Borders</title>
+    <script src="leaflet-src.js"></script>
+    <script src="leaflet.timeline.js"></script>
+
+    <link href="leaflet.css" rel="stylesheet">
+
+    <style>
+      html, body{
+        margin: 0;
+        padding: 0;
+      }
+      #map{
+        width: 100vw;
+        height: 100vh;
+      }
+      .leaflet-bottom.leaflet-left{
+        width: 100%;
+      }
+      .leaflet-control-container .leaflet-timeline-controls{
+        box-sizing: border-box;
+        width: 100%;
+        margin: 0;
+        margin-bottom: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <script>
+      var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+      var osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+      var osm = L.tileLayer(osmUrl, {maxZoom: 18, attribution: osmAttrib});
+      var map = L.map('map', {layers: [osm], center: new L.LatLng(0,0), zoom: 2 });
+
+      function onLoadData(data){
+        var getInterval = function (feature) {
+          return {
+            start: new Date (feature.properties.date).getTime(),
+            end: -725846400
+          };
+        };
+        var timeline = L.timeline(data, {
+          getInterval: getInterval,
+          waitToUpdateMap: true,
+          onEachFeature: function(feature, layer) {
+            layer.bindTooltip(feature.properties.record);
+          }
+        });
+
+        var timelineControl = L.timelineSliderControl({
+          formatOutput: function(date) {
+            return new Date(date).toLocaleDateString();
+          }
+        });
+
+        timeline.addTo(map);
+        timelineControl.addTo(map);
+        timelineControl.addTimelines(timeline);
+      }
+    </script>
+    <script src="./points.jsonp"></script>
+  </body>
+</html>
