@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Malgre Nous </title>
+
+  <!-- Style Sheets -->
+  <link rel="stylesheet" href="./style/leaflet.css"/>
+  <link rel="stylesheet" href="./style/mystyle.css"/>
+  <link rel="stylesheet" href="./style/MarkerCluster.css" />
+  <link rel="stylesheet" href="./style/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="./style/layout.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.css">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" type="text/css">
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+  <!-- Fonts + Icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oxygen">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Serif|Nunito" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Libre+Franklin:400,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+  <script src="./scripts/leaflet.edgebuffer.js"></script>
+  <script src="./scripts/jquery-2.1.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+  <script src="./scripts/leaflet.markercluster-src.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster.layersupport@1.0.3/dist/leaflet.markercluster.layersupport-src.js"></script>
+  <script src="./scripts/slider.js"></script>
+  <script src="./scripts/timeline/leaflet.timeline.js"></script>
+
+  <!-- Points -->
+  <script src="./points/ISO_no_unknown.js"></script>
+</head>
+
+<body>
+
+<body class="box">
+  <div class="box-main">
+
+  <h1> Three Efforts to use Timeline with all points </h1>
+  <p> None will crash browser </p>
+
+  <div id="map" style="width: 100%; height: 700px; border: 1px solid #333;"></div>
+
+  <br>
+  <br>
+
+  <div id="map1" style="width: 100%; height: 700px; border: 1px solid #333;"></div>
+
+  <br>
+  <br>
+
+  <div id="map2" style="width: 100%; height: 700px; border: 1px solid #333;"></div>
+
+
+<script>
+    var map = L.map('map').setView([47.06, 19.94], 4);
+    map.scrollWheelZoom.disable();
+    map.dragging.disable();
+    map.doubleClickZoom.disable();
+
+  L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+	  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+	  subdomains: 'abcd',
+	  maxZoom: 19,
+    edgeBufferTiles: 2
+  }).addTo(map);
+
+
+  var getInterval = function (feature) {
+    return {
+      start: new Date (feature.properties.date).getTime(),
+      end: new Date ("1946-01-01").getTime()
+    };
+  };
+
+  var timeline = L.timeline(malgreNous, {
+    getInterval: getInterval,
+    waitToUpdateMap: true,
+  });
+
+  var timelineControl = L.timelineSliderControl({
+    start: new Date ("1942-08-01").getTime(),
+    waitToUpdateMap: true,
+    showTicks: true,
+    formatOutput: function(date) {
+      return new Date(date).toLocaleDateString();
+    }
+  });
+
+  L.markerClusterGroup.layerSupport({chunkedLoading: true}).addTo(map).checkIn(timeline);
+  timeline.addTo(map);
+  timelineControl.addTo(map);
+  timelineControl.addTimelines(timeline);
+</script>
+
+<script>
+    var map = L.map('map1').setView([47.06, 19.94], 4);
+    map.scrollWheelZoom.disable();
+    map.dragging.disable();
+    map.doubleClickZoom.disable();
+
+  L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+	  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+	  subdomains: 'abcd',
+	  maxZoom: 19,
+    edgeBufferTiles: 2
+  }).addTo(map);
+
+
+  var getInterval = function (feature) {
+    return {
+      start: new Date (feature.properties.date).getTime(),
+      end: new Date ("1946-01-01").getTime()
+    };
+  };
+
+  var timeline = L.timeline(malgreNous, {
+    getInterval: getInterval,
+    waitToUpdateMap: true,
+  });
+
+  var timelineControl = L.timelineSliderControl({
+    start: new Date ("1942-08-01").getTime(),
+    waitToUpdateMap: true,
+    showTicks: true,
+    steps: 25,
+    formatOutput: function(date) {
+      return new Date(date).toLocaleDateString();
+    }
+  });
+
+  L.markerClusterGroup.layerSupport({chunkedLoading: true}).addTo(map).checkIn(timeline);
+  timeline.addTo(map);
+  timelineControl.addTo(map);
+  timelineControl.addTimelines(timeline);
+</script>
+
+<script>
+    var map = L.map('map2').setView([47.06, 19.94], 4);
+    map.scrollWheelZoom.disable();
+    map.dragging.disable();
+    map.doubleClickZoom.disable();
+
+  L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+	  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+	  subdomains: 'abcd',
+	  maxZoom: 19,
+    edgeBufferTiles: 2
+  }).addTo(map);
+
+
+  var getInterval = function (feature) {
+    var cdate =  new Date (feature.properties.date);
+    cdate = cdate.setDate('0');
+    return {
+      start: cdate,
+      end: new Date ("1946-01-01").getTime()
+    };
+  };
+
+  var timeline = L.timeline(malgreNous, {
+    getInterval: getInterval,
+    waitToUpdateMap: true,
+  });
+
+  var timelineControl = L.timelineSliderControl({
+    start: new Date ("1942-08-01").getTime(),
+    waitToUpdateMap: true,
+    showTicks: true,
+    formatOutput: function(date) {
+      return new Date(date).toLocaleDateString();
+    }
+  });
+
+  L.markerClusterGroup.layerSupport({chunkedLoading: true}).addTo(map).checkIn(timeline);
+  timeline.addTo(map);
+  timelineControl.addTo(map);
+  timelineControl.addTimelines(timeline);
+</script>
