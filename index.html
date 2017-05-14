@@ -33,6 +33,7 @@
 
   <!-- Points -->
   <script src="./points/ISO_no_unknown.js"></script>
+  <script src="./points/all.js"></script>
   <script src="./points/italy.js"></script>
 </head>
 
@@ -49,6 +50,7 @@
   <h2> INTRO </h2>
   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc efficitur risus quis lacus molestie, sit amet fermentum mauris varius. Ut cursus consequat placerat. Praesent arcu sem, bibendum eget bibendum id, tincidunt vel risus. Curabitur sit amet metus sit amet purus facilisis vehicula eu et mi. Donec bibendum tristique libero, sed sodales nisl efficitur sit amet. Fusce in sem aliquam, vestibulum est et, fringilla risus. Suspendisse eleifend nulla risus, quis elementum odio ultricies nec. Fusce rutrum, massa auctor sollicitudin interdum, nunc tortor venenatis ligula, vel convallis lacus lorem nec velit. Quisque quis nisi elementum, auctor enim ac, tempus magna. Quisque non faucibus ligula, at facilisis quam. Suspendisse vehicula iaculis risus, a tempor nunc auctor at.
   <p>
+  <div id="progress"><div id="progress-bar"></div></div>
   <div id="map" style="width: 100%; height: 700px; border: 1px solid #333;"></div>
   <button class="link" id="link1"> Full Map </button>
 
@@ -97,7 +99,7 @@
 
  <script>
 
-    var map = L.map('map').setView([47.06, 19.94], 4);
+    var map = L.map('map').setView([57.06, 29.94], 4);
     map.scrollWheelZoom.disable();
     //map.dragging.disable();
     map.doubleClickZoom.disable();
@@ -109,28 +111,14 @@
     edgeBufferTiles: 2
   }).addTo(map);
 
-  var getInterval = function (feature) {
-    return {
-      start: new Date (feature.properties.date).getTime(),
-      end: new Date ("1946-01-01").getTime()
-    };
-  };
+  var markers = L.markerClusterGroup();
 
-  var timeline = L.timeline(malgreNous, {
-    getInterval: getInterval,
-    waitToUpdateMap: true
-  });
-
-  var timelineControl = L.timelineSliderControl({
-    formatOutput: function(date) {
-      return new Date(date).toLocaleDateString();
-    }
-  });
-
-  L.markerClusterGroup.layerSupport().addTo(map).checkIn(timeline);
-  timeline.addTo(map);
-  timelineControl.addTo(map);
-  timelineControl.addTimelines(timeline);
+  for (var i = 0; i < addressPoints.length; i++) {
+    var a = addressPoints[i];
+    var marker = L.marker(new L.LatLng(a[0], a[1]));
+    markers.addLayer(marker);
+  }
+  map.addLayer(markers);
 </script>
 <script>
 var sliderControl = null;
@@ -162,6 +150,7 @@ L.control.zoom({
   });
 
   var timelineControl = L.timelineSliderControl({
+    start: new Date ("1942-08-01").getTime(),
     formatOutput: function(date) {
       return new Date(date).toLocaleDateString();
     }
