@@ -1,4 +1,3 @@
-onLoadData (
 {"type":"FeatureCollection", "features":
   [
 {"type": "Feature", "geometry": {"type": "Point", "coordinates": [28.48096759800046, 49.2327784900005]}, "properties": {"record": "1", "date": "1943-12-26", "country": "Ukraine", "city": "Winniza"}},
@@ -5015,7 +5014,6 @@ onLoadData (
 {"type": "Feature", "geometry": {"type": "Point", "coordinates": [11.809789463000413, 51.14986937100048]}, "properties": {"record": "10904", "date": "1944-09-25", "country": "Germany", "city": "Naumberg"}},
 {"type": "Feature", "geometry": {"type": "Point", "coordinates": [24.1999989, 56.4102879]}, "properties": {"record": "10909", "date": "1944-09-19", "country": "Latvia", "city": "Bauske"}},
 {"type": "Feature", "geometry": {"type": "Point", "coordinates": [22.930867602000433, 54.11174954000046]}, "properties": {"record": "10913", "date": "1944-08-08", "country": "Poland", "city": "Suwalki"}},
-{"type": "Feature", "geometry": {"type": "Point", "coordinates": [25.76666895900047, 47.46666721100047]}, "properties": {"record": "10914", "date": "1922-09-03", "country": "Romania", "city": "Stulpikani"}},
 {"type": "Feature", "geometry": {"type": "Point", "coordinates": [21.011778898000443, 52.22976904300049]}, "properties": {"record": "10916", "date": "1944-09-11", "country": "Poland", "city": "Warsaw"}},
 {"type": "Feature", "geometry": {"type": "Point", "coordinates": [23.71277671700045, 56.6499968010005]}, "properties": {"record": "10918", "date": "1944-07-28", "country": "Latvia", "city": "Mitau"}},
 {"type": "Feature", "geometry": {"type": "Point", "coordinates": [26.31456734000045, 56.96785759500051]}, "properties": {"record": "10920", "date": "1944-08-31", "country": "Latvia", "city": "Cesvaines"}},
@@ -9120,7 +9118,6 @@ onLoadData (
 {"type": "Feature", "geometry": {"type": "Point", "coordinates": [7.185279832000447, 48.246798983000474]}, "properties": {"record": "53840", "date": "1963-11-13", "country": "France", "city": "Sainte-Marie-aux-Mines (Haut-Rhin)"}},
 {"type": "Feature", "geometry": {"type": "Point", "coordinates": [7.742955845000438, 48.58341861200046]}, "properties": {"record": "53844", "date": "1950-09-15", "country": "France", "city": "Strasbourg (Bas-Rhin)"}},
 {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.191606795000439, 48.89730625900046]}, "properties": {"record": "57372", "date": "1944-11-09", "country": "Germany", "city": "Ludwigsburg"}},
-{"type": "Feature", "geometry": {"type": "Point", "coordinates": [13.5495324, 43.4035649]}, "properties": {"record": "10005", "date": "1944-18-07", "country": "Italie", "city": "Recanati"}},
 {"type": "Feature", "geometry": {"type": "Point", "coordinates": [11.4384686, 43.7747178]}, "properties": {"record": "10237", "date": "1944-08-06", "country": "Italie", "city": "Pontassiève"}},
 {"type": "Feature", "geometry": {"type": "Point", "coordinates": [15.7291788, 41.70659]}, "properties": {"record": "10259", "date": "1944-07-25", "country": "Italie", "city": "Giovanni"}},
 {"type": "Feature", "geometry": {"type": "Point", "coordinates": [15.7291788, 41.70659]}, "properties": {"record": "10260", "date": "1944-07-25", "country": "Italie", "city": "Giovanni"}},
