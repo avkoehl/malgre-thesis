@@ -14,7 +14,12 @@
   background-image: url("../assets/images/banner.jpg");
 }
 
-
+.navbar-fixed {
+    top: 0;
+    z-index: 100;
+  position: fixed;
+    width: 100%;
+}
 .overlay {
   position: absolute;
   top: 0;
@@ -31,7 +36,7 @@
   color: white;
   font-size: 300%;
   height: 200px;
-  text-shadow: -2px 0 #333, 0 2px #333, 2px 0 #333, 0 -2px #333;
+ // text-shadow: -2px 0 #333, 0 2px #333, 2px 0 #333, 0 -2px #333;
 }
 
 .subtitle {
@@ -41,7 +46,7 @@
   text-align: center;
   color: white;
   font-size: 50%;
-  text-shadow: -2px 0 #333, 0 2px #333, 2px 0 #333, 0 -2px #333;
+//  text-shadow: -2px 0 #333, 0 2px #333, 2px 0 #333, 0 -2px #333;
 }
 
 .content {
@@ -108,4 +113,45 @@ img {
   width: 100%;
   margin: 0;
   margin-bottom: 15px;
+}
+.navbar-fixed {
+    top: 0;
+    z-index: 10000;
+  position: fixed;
+    width: 100%;
+}
+
+#nav_bar {
+  margin: 0px;
+  padding: 0px;
+  background-color: #333;
+  height: 50px;
+}
+
+ul.malgre {
+ list-style-type: none;
+ overflow: hidden;
+  margin:0;
+  padding:0;
+}
+
+li.malgre {
+  display: inline-block;
+
+}
+
+li.malgre a{
+  display: block;
+  color: #17729a;
+	text-align: center;
+  padding: 14px 16px;
+	text-decoration: none;
+}
+
+li.malgre a.active {
+  color: white;
+}
+
+li.malgre a:hover:not(.active) {
+	color: white;
 }

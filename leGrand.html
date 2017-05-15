@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Malgre Nous </title>
+
+  <!-- Style Sheets -->
+  <link rel="stylesheet" href="./style/leaflet.css"/>
+  <link rel="stylesheet" href="./style/mystyle.css"/>
+  <link rel="stylesheet" href="./style/MarkerCluster.css" />
+  <link rel="stylesheet" href="./style/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="./style/layout.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.css">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" type="text/css">
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+  <!-- Fonts + Icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oxygen">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Serif|Nunito" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Libre+Franklin:400,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+  <script src="./scripts/leaflet.edgebuffer.js"></script>
+  <script src="./scripts/jquery-2.1.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+  <script src="./scripts/leaflet.markercluster-src.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster.layersupport@1.0.3/dist/leaflet.markercluster.layersupport-src.js"></script>
+  <script src="./scripts/slider.js"></script>
+  <script src="./scripts/timeline/leaflet.timeline.js"></script>
+
+  <!-- Points -->
+  <script src="./points/tournant.js"></script>
+  <script src="./points/italy.js"></script>
+
+</head>
+
+<body style="margin: 0; padding: 0">
+	<center>
+	<h2> Story Maps </h2>
+  <div id="Alsace" style="width: 60%; height: 700px; margin: 0; padding: 0"></div>
+	<p> 1939-09 -> 1941-03 </p>
+	<br>
+	<br>
+
+	  <div id="Incorpore" style="width: 60%; height: 700px; margin: 0; padding: 0"></div>
+	<br>
+	<br>
+	<p> 1943-02 -> 1944-06-06 </p>
+	
+	  <div id="italyMap" style="width: 60%; height: 700px; margin: 0; padding: 0"></div>
+	<br>
+	<br>
+	<p> Italy </p>
+  <div id="SS" style="width: 60%; height: 700px; margin: 0; padding: 0"></div>
+	<br>
+	<br>
+	<p> 1944-07 -> 1944-11 </p>
+
+	  <div id="battle1" style="width: 60%; height: 700px; margin: 0; padding: 0"></div>
+	<br>
+	<br>
+	<p> 1944-12 -> 1945-01 </p>
+	<center>
+
+<script>
+    var map1 = L.map('Alsace').setView([48.06, 7.59], 8);
+    map1.scrollWheelZoom.disable();
+    map1.dragging.disable();
+    map1.doubleClickZoom.disable();
+
+  L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+	  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+	  subdomains: 'abcd',
+	  maxZoom: 19,
+    edgeBufferTiles: 2
+  }).addTo(map1);
+
+  
+  var timelineControlP = L.timelineSliderControl({
+    start: new Date ("1939-08-01").getTime(),
+	end: new Date ("1941-03-31").getTime(),
+    waitToUpdateMap: true,
+    showTicks: true,
+	duration: 50000,
+    formatOutput: function(date) {
+      return new Date(date).toLocaleDateString();
+    }
+  });
+  
+  pre.addTo(map1);
+  hospitals.addTo(map1);
+  airRaids.addTo(map1);
+  events.addTo(map1);
+
+  timelineControlP.addTo(map1);
+  timelineControlP.addTimelines(hospitals,airRaids, events, pre);
+</script>
+<script>
+    var map2 = L.map('Incorpore').setView([48.06, 7.59], 6);
+    map2.scrollWheelZoom.disable();
+    map2.dragging.disable();
+    map2.doubleClickZoom.disable();
+
+  L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+	  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+	  subdomains: 'abcd',
+	  maxZoom: 19,
+    edgeBufferTiles: 2
+  }).addTo(map2);
+
+  
+  var timelineControlI = L.timelineSliderControl({
+    start: new Date ("1943-02-01").getTime(),
+	end: new Date ("1944-06-07").getTime(),
+    waitToUpdateMap: true,
+    showTicks: true,
+	duration: 50000,
+    formatOutput: function(date) {
+      return new Date(date).toLocaleDateString();
+    }
+  });
+  
+  hospitals.addTo(map2);
+  airRaids.addTo(map2);
+  events.addTo(map2);
+  post.addTo(map2);
+  
+  timelineControlI.addTo(map2);
+  timelineControlI.addTimelines(hospitals,airRaids, events, post);
+</script>
+<script>
+    var map3 = L.map('SS').setView([50.06, 12.59], 6);
+    map3.scrollWheelZoom.disable();
+    map3.dragging.disable();
+    map3.doubleClickZoom.disable();
+
+  L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+	  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+	  subdomains: 'abcd',
+	  maxZoom: 19,
+    edgeBufferTiles: 2
+  }).addTo(map3);
+
+  
+  var timelineControlS = L.timelineSliderControl({
+    start: new Date ("1944-07-01").getTime(),
+	end: new Date ("1944-11-01").getTime(),
+    waitToUpdateMap: true,
+    showTicks: true,
+	duration: 50000,
+    formatOutput: function(date) {
+      return new Date(date).toLocaleDateString();
+    }
+  });
+  
+  hospitals.addTo(map3);
+  airRaids.addTo(map3);
+  events.addTo(map3);
+  ss.addTo(map3);
+  
+  timelineControlS.addTo(map3);
+  timelineControlS.addTimelines(hospitals,airRaids, events, ss);
+</script>
+<script>
+    var map4 = L.map('battle1').setView([50.06, 9.59], 7);
+    map4.scrollWheelZoom.disable();
+    map4.dragging.disable();
+    map4.doubleClickZoom.disable();
+
+  L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+	  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+	  subdomains: 'abcd',
+	  maxZoom: 19,
+    edgeBufferTiles: 2
+  }).addTo(map4);
+
+  
+  var timelineControlB = L.timelineSliderControl({
+    start: new Date ("1944-11-31").getTime(),
+	end: new Date ("1945-01-15").getTime(),
+    waitToUpdateMap: true,
+    showTicks: true,
+	duration: 50000,
+    formatOutput: function(date) {
+      return new Date(date).toLocaleDateString();
+    }
+  });
+  
+  hospitals.addTo(map4);
+  airRaids.addTo(map4);
+  events.addTo(map4);
+  bulge.addTo(map4);
+  
+  timelineControlB.addTo(map4);
+  timelineControlB.addTimelines(hospitals,airRaids, events, bulge);
+</script>
+<script>
+var italyMap = L.map('italyMap', {zoomControl: false}).setView([41.06, 13.94], 6);
+italyMap.scrollWheelZoom.disable();
+
+
+L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+  subdomains: 'abcd',
+  maxZoom: 19,
+  edgeBufferTiles: 2
+}).addTo(italyMap);
+
+L.control.zoom({
+  position:'topright'
+}).addTo(italyMap);
+
+  var getIntervalI = function (feature) {
+    return {
+      start: new Date (feature.properties.date).getTime(),
+      end: new Date ("1946-01-01").getTime()
+    };
+  };
+
+  var timeline2 = L.timeline(malgreNousItaly, {
+    getInterval: getIntervalI,
+    waitToUpdateMap: true
+  });
+
+  var timelineControlIt = L.timelineSliderControl({
+    start: new Date ("1943-07-01").getTime(),
+	end: new Date ("1945-03-01").getTime(),
+    formatOutput: function(date) {
+      return new Date(date).toLocaleDateString();
+    }
+  });
+
+  timeline2.addTo(italyMap);
+  timelineControlIt.addTo(italyMap);
+  timelineControlIt.addTimelines(timeline2);
+
+</script>
+</body>
+</html>

@@ -44,7 +44,16 @@
   <div class="banner">
     <div class="overlay"><div class="title"><br>Malgr&eacute;-Nous<br><span class="subtitle">Les Incorpor&eacute;s de Force Alsaciens et Mosellans <br> Durant La Seconde Guerre Mondiale</span></div></div>
   </div>
-
+  <center>
+  <nav id='nav_bar'>
+  <ul class="malgre">
+    <li class="malgre">  <a class="active" style="text-decoration: none" href="http://malgrenous.com/dev.html">INTRO </a> </li> <!-- sources, files -->
+    <li class="malgre">  <a  style="text-decoration: none" href="http://malgrenous.com/dev.html">PART 1 </a> </li> <!-- sources, files -->
+    <li class="malgre">  <a  style="text-decoration: none" href="http://malgrenous.com/dev.html">PART 2 </a> </li> <!-- sources, files -->
+    <li class="malgre">  <a  style="text-decoration: none" href="http://malgrenous.com/dev.html">CONCLUSION </a> </li> <!-- sources, files -->
+  </ul>
+</nav>
+</center>
   <div class="box-main">
   <!-- comment -->
 
@@ -165,6 +174,22 @@ L.control.zoom({
 
 
 </script>
+<script>
+$(document).ready(function() {
 
+  $(window).scroll(function () {
+      //if you hard code, then use console
+      //.log to determine when you want the
+      //nav bar to stick.
+    //  console.log($(window).scrollTop())
+    if ($(window).scrollTop() > 200) {
+      $('#nav_bar').addClass('navbar-fixed');
+    }
+    if ($(window).scrollTop() < 201) {
+      $('#nav_bar').removeClass('navbar-fixed');
+    }
+  });
+});
+</script>
 </body>
 </html>
