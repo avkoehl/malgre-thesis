@@ -34,6 +34,10 @@
   <!-- Points -->
   <script src="./points/tournant.js"></script>
   <script src="./points/italy.js"></script>
+    <script src="./points/all.js"></script>
+	  <script src="./points/ISO_no_unknown.js"></script>
+
+
 
 </head>
 
@@ -194,6 +198,19 @@
   events.addTo(map4);
   bulge.addTo(map4);
   
+ var getInterval = function (feature) {
+    return {
+      start: new Date (feature.properties.date).getTime(),
+      end: new Date ("1946-01-01").getTime()
+    };
+  };
+
+  //var timeline = L.timeline(malgreNous, {
+   // getInterval: getInterval,
+   // waitToUpdateMap: true,
+  });
+  //  timeline.addTo(map4);
+
   timelineControlB.addTo(map4);
   timelineControlB.addTimelines(hospitals,airRaids, events, bulge);
 </script>
@@ -232,6 +249,8 @@ L.control.zoom({
       return new Date(date).toLocaleDateString();
     }
   });
+  
+
 
   timeline2.addTo(italyMap);
   timelineControlIt.addTo(italyMap);
