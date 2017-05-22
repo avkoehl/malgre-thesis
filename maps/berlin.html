@@ -43,6 +43,14 @@
     };
   };
 
+  var borderStyle = {
+    "color": "grey",
+    "weight": 1,
+    "opacity": 1,
+    "fillopacity": 0,
+    "fillColor": "#ffffff"
+  };
+
   var berlin = L.timeline(malgreNousBerlin, {
     getInterval: getInterval,
     onEachFeature: onEachFeature,
@@ -74,6 +82,11 @@
     position:'topright'
   }).addTo(map);
 
+  $.getJSON("../shapefiles/bordersGeoJson/April_30_1941.geojson", function(data) {
+    L.geoJSON(data, {
+      style: borderStyle
+      }).addTo(map);
+    });
 
   berlin.addTo(map);
   timelineControl.addTo(map);
