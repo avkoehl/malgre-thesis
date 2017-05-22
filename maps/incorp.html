@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Malgre Nous </title>
+
+  <!-- Style Sheets -->
+  <link rel="stylesheet" href="../style/leaflet.css"/>
+  <link rel="stylesheet" href="../style/mystyle.css"/>
+  <link rel="stylesheet" href="../style/MarkerCluster.css" />
+  <link rel="stylesheet" href="../style/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="../style/layout.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.css">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" type="text/css">
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+  <!-- Fonts + Icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oxygen">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Serif|Nunito" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Libre+Franklin:400,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+  <script src="../scripts/leaflet.edgebuffer.js"></script>
+  <script src="../scripts/jquery-2.1.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+  <script src="../scripts/leaflet.markercluster-src.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster.layersupport@1.0.3/dist/leaflet.markercluster.layersupport-src.js"></script>
+  <script src="../scripts/slider.js"></script>
+  <script src="../scripts/timeline/leaflet.timeline.js"></script>
+
+  <!-- Points -->
+  <script src="tournant.js"></script>
+
+
+
+</head>
+
+<body style="margin: 0; padding: 0">
+
+	  <div id="Incorpore" style="width: 100vw; height: 100vh; margin: 0; padding: 0"></div>
+
+<script>
+    var map2 = L.map('Incorpore').setView([48.06, 7.59], 6);
+    map2.scrollWheelZoom.disable();
+    map2.dragging.disable();
+    map2.doubleClickZoom.disable();
+  var borderStyle = {
+    "color": "grey",
+    "weight": 1,
+    "opacity": 1,
+    "fillopacity": 0,
+    "fillColor": "#ffffff"
+  };
+
+
+  L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+	  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+	  subdomains: 'abcd',
+	  maxZoom: 19,
+    edgeBufferTiles: 2
+  }).addTo(map2);
+
+  
+  var timelineControlI = L.timelineSliderControl({
+    start: new Date ("1943-02-01").getTime(),
+	end: new Date ("1944-06-07").getTime(),
+    waitToUpdateMap: true,
+    showTicks: true,
+	duration: 50000,
+    formatOutput: function(date) {
+      return new Date(date).toLocaleDateString();
+    }
+  });
+  
+  hospitals.addTo(map2);
+  airRaids.addTo(map2);
+  events.addTo(map2);
+  post.addTo(map2);
+  $.getJSON("../shapefiles/bordersGeoJson/April_30_1941.geojson", function(data) {
+    L.geoJSON(data, {
+      style: borderStyle
+      }).addTo(map);
+    });
+
+
+  
+  timelineControlI.addTo(map2);
+  timelineControlI.addTimelines(hospitals,airRaids, events, post);
+</script>
+
+</body>
+</html>

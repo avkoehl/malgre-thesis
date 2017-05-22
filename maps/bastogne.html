@@ -20,6 +20,7 @@
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="bastogne.js"></script>
+  <script src="tournant.js"></script>
 </head>
 
 <body style="margin: 0 auto"> 
@@ -66,7 +67,7 @@
     }
   });
 
-  var mybounds = L.latLngBounds([49.30, 5.50], [50.60, 6.80]);
+  var mybounds = L.latLngBounds([49.30, 5.50], [51.90, 6.80]);
   var map = L.map('map', {zoomControl: false, maxBounds: mybounds}).setView([50.0, 6.10],7);
 
   L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
@@ -89,9 +90,14 @@
       }).addTo(map);
     });
 
+  hospitals.addTo(map);
+  airRaids.addTo(map);
+  events.addTo(map);
+  ss.addTo(map);
   bastogne.addTo(map);
+  bastogne.bringToBack();
   timelineControl.addTo(map);
-  timelineControl.addTimelines(bastogne);
+  timelineControl.addTimelines(bastogne, ss, hospitals, airRaids, events);
   </script>
 </body>
 

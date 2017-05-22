@@ -1,16 +1,14 @@
 var preIncorporation = 
 {"type":"FeatureCollection", "features":
   [
- 	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [7.75, 48.57]}, "properties": {"desc": "Born in Strasbourg", "date": "1926-04", "page":"15", "country": "France", "city": "Strasbourg"}},
+ 	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [7.75, 48.57]}, "properties": {"desc": "Born in Strasbourg", "date": "1926-04-01", "page":"15", "country": "France", "city": "Strasbourg"}},
 	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [7.48, 48.43]}, "properties": {"desc": "Evacuates to Goxwiller in anticipation of war, many other evacuated from Strasbourg", "date": "1939-09-03", "page": "27", "country": "France", "city": "Goxwiller"}},
  	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [7.75, 48.57]}, "properties": {"desc": "Father mobilized into French army", "date": "1939-09-05", "page":"31", "country": "France", "city": "Strasbourg"}},
  	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.86, 47.64]}, "properties": {"desc": "Moves with mother to Belfort, leaving Alsace but staying close to grandparents", "date": "1939-09-27", "page":"38", "country": "France", "city": "Belfort"}},
  	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [4.85, 46.78]}, "properties": {"desc": "Leave for Chalon-sur-Saone, as the germans expected to arrive in Belfort within days" , "date": "1940-06-17", "page":"56", "country": "France", "city": "Chalon-sur-Saone"}},
  	
  	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [7.75, 48.57]}, "properties": {"desc": "Return to Strasbourg, now part of Germany" , "date": "1940-10-15", "page":"65", "country": "France", "city": "Strasbourg"}},
- 	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [7.75, 48.57]}, "properties": {"desc": "Forced to join Hitler Youth" , "date": "1941-01-04", "page":"70", "country": "France", "city": "Strasbourg"}}
- 	 
-  
+	{"type": "Feature", "geometry": {"type": "Point", "coordinates": [7.75, 48.57]}, "properties": {"desc": "Forced to join Hitler Youth" , "date": "1941-01-04", "page":"70", "country": "France", "city": "Strasbourg"}}
   ]
 };
 
@@ -234,5 +232,16 @@ var hospital =
               fillColor: "#0000ff",
 			  fillOpacity: "1"
             }).bindPopup(bBulge.properties.date + "<br>" +bBulge.properties.desc + "<br>" +bBulge.properties.quote + "<br> page: " +bBulge.properties.page + "<br> city: " +bBulge.properties.city + "<br> country: " +bBulge.properties.country).openPopup();
+		}
+  });
+        var bberlin = L.timeline(bBerlin, {
+    getInterval: getIntervalG,
+    waitToUpdateMap: true,
+	pointToLayer: function(bBerlin, latlng){
+            return L.circleMarker(latlng, {
+              color: "#0000ff",
+              fillColor: "#0000ff",
+			  fillOpacity: "1"
+            }).bindPopup(bBerlin.properties.date + "<br>" +bBerlin.properties.desc + "<br>" +bBerlin.properties.quote + "<br> page: " +bBerlin.properties.page + "<br> city: " +bBerlin.properties.city + "<br> country: " +bBerlin.properties.country).openPopup();
 		}
   });

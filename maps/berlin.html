@@ -20,6 +20,7 @@
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="berlin.js"></script>
+  <script src="tournant.js"></script>
 </head>
 
 <body style="margin: 0 auto"> 
@@ -88,9 +89,10 @@
       }).addTo(map);
     });
 
+  bberlin.addTo(map);
   berlin.addTo(map);
   timelineControl.addTo(map);
-  timelineControl.addTimelines(berlin);
+  timelineControl.addTimelines(berlin, bberlin);
   </script>
 </body>
 
