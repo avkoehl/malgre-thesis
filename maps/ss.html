@@ -23,7 +23,7 @@
   <script src="tournant.js"></script>
 </head>
 
-<body style="margin: 0 auto"> 
+<body style="margin: 0 auto">
 	<div id="map" style="width:100vw; height:100vh"></div> <!-- Map -->
 
   <script>
@@ -93,10 +93,9 @@
   airRaids.addTo(map);
   events.addTo(map);
   ss.addTo(map);
-  //germany.addTo(map);
+  germany.addTo(map);
   timelineControl.addTo(map);
- // timelineControl.addTimelines(germany, hospitals, airRaids, events, ss);
-  timelineControl.addTimelines( hospitals, airRaids, events, ss);
+  timelineControl.addTimelines(germany, hospitals, airRaids, events, ss);
   </script>
 </body>
 

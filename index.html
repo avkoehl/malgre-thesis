@@ -158,23 +158,23 @@
   <h2> CASE STUDY </h2>
   <br>
   <div id="mapPre" style="width: 100%; height: 700px; border: 1px solid #333;"></div>
-  <button class="link" id="link2"> Full Map </button>
+  <a href="/maps/pre.html"><button class="link" id="link2"> Full Map </button></a>
   <br>
   <br>
   <div id="mapItaly" style="width: 100%; height: 700px; border: 1px solid #333;"></div>
-  <button class="link" id="link3"> Full Map </button>
+  <a href="/maps/italy.html"><button class="link" id="link3"> Full Map </button></a>
   <br>
   <br>
   <div id="mapIncorp" style="width: 100%; height: 700px; border: 1px solid #333;"></div>
-  <button class="link" id="link4"> Full Map </button>
+  <a href="/maps/incorp.html"><button class="link" id="link4"> Full Map </button></a>
   <br>
   <br>
   <div id="mapNormandy" style="width: 100%; height: 700px; border: 1px solid #333;"></div>
-  <button class="link" id="link5"> Full Map </button>
+  <a href="/maps/normandie.html"><button class="link" id="link5"> Full Map </button></a>
   <br>
   <br>
   <div id="mapSS" style="width: 100%; height: 700px; border: 1px solid #333;"></div>
-  <button class="link" id="link6"> Full Map </button>
+  <a href="/maps/ss.html"><button class="link" id="link6"> Full Map </button></a>
   <br>
   <br>
   <div id="mapBastogne" style="width: 100%; height: 700px; border: 1px solid #333;"></div>
@@ -182,7 +182,7 @@
   <br>
   <br>
   <div id="mapBerlin" style="width: 100%; height: 700px; border: 1px solid #333;"></div>
-  <button class="link" id="link8"> Full Map </button>
+  <a href="/maps/berlin.html"><button class="link" id="link8"> Full Map </button></a>
   <br>
   <br>
   <hr>
@@ -201,155 +201,513 @@
 
 
 
-
+<!-- For monthly Europe map -->
 <script>
-var slideIndex = 1;
-showDivs(slideIndex);
+  var slideIndex = 1;
+  showDivs(slideIndex);
 
-function plusDivs(n) {
-  showDivs(slideIndex += n);
-}
-
-function currentDiv(n) {
-  showDivs(slideIndex = n);
-}
-
-function showDivs(n) {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("demo");
-  if (n > x.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = x.length}
-  for (i = 0; i < x.length; i++) {
-     x[i].style.display = "none";
+  function plusDivs(n) {
+    showDivs(slideIndex += n);
   }
-  for (i = 0; i < dots.length; i++) {
-     dots[i].className = dots[i].className.replace(" w3-blue", "");
+
+  function currentDiv(n) {
+    showDivs(slideIndex = n);
   }
-  //This is for the images
-  x[slideIndex-1].style.display = "block";
-  //this is for the buttons
-  if (slideIndex < 7) {dots[0].className += " w3-blue"};
-  if (slideIndex < 19 && slideIndex >= 7) {dots[1].className += " w3-blue"};
-  if (slideIndex < 31 && slideIndex >= 19) {dots[2].className += " w3-blue"};
-  if (slideIndex < 35 && slideIndex >= 31) {dots[3].className += " w3-blue"};
-  if (slideIndex == 35) {dots[4].className += " w3-blue"};
-}
+
+  function showDivs(n) {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("demo");
+    if (n > x.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = x.length}
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+       dots[i].className = dots[i].className.replace(" w3-blue", "");
+    }
+    //This is for the images
+    x[slideIndex-1].style.display = "block";
+    //this is for the buttons
+    if (slideIndex < 7) {dots[0].className += " w3-blue"};
+    if (slideIndex < 19 && slideIndex >= 7) {dots[1].className += " w3-blue"};
+    if (slideIndex < 31 && slideIndex >= 19) {dots[2].className += " w3-blue"};
+    if (slideIndex < 35 && slideIndex >= 31) {dots[3].className += " w3-blue"};
+    if (slideIndex == 35) {dots[4].className += " w3-blue"};
+  }
 </script>
 
- <script>
+<!-- For sticky nav bar -->
+<script>
+  $(document).ready(function() {
+
+    $(window).scroll(function () {
+        //if you hard code, then use console
+        //.log to determine when you want the
+        //nav bar to stick.
+      //  console.log($(window).scrollTop())
+      if ($(window).scrollTop() > 200) {
+        $('#nav_bar').addClass('navbar-fixed');
+      }
+      if ($(window).scrollTop() < 201) {
+        $('#nav_bar').removeClass('navbar-fixed');
+      }
+    });
+  });
+</script>
+
+<!-- All points Clustered -->
+<script>
     var map = L.map('map').setView([57.06, 29.94], 4);
     map.scrollWheelZoom.disable();
     //map.dragging.disable();
     map.doubleClickZoom.disable();
 
+    L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+  	  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+  	  subdomains: 'abcd',
+  	  maxZoom: 19,
+      edgeBufferTiles: 2
+    }).addTo(map);
+
+    var markers = L.markerClusterGroup();
+
+    for (var i = 0; i < addressPoints.length; i++) {
+      var a = addressPoints[i];
+      var marker = L.marker(new L.LatLng(a[0], a[1]));
+      markers.addLayer(marker);
+    }
+    map.addLayer(markers);
+
+</script>
+
+
+<!-- Pre Incorporation -->
+<script>
+    var mapPre = L.map('mapPre').setView([48.06, 7.59], 7);
+    mapPre.scrollWheelZoom.disable();
+    mapPre.dragging.disable();
+    mapPre.doubleClickZoom.disable();
+
   L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
 	  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
 	  subdomains: 'abcd',
 	  maxZoom: 19,
+    minZoom: 6,
     edgeBufferTiles: 2
-  }).addTo(map);
+  }).addTo(mapPre);
 
-  var markers = L.markerClusterGroup();
 
-  for (var i = 0; i < addressPoints.length; i++) {
-    var a = addressPoints[i];
-    var marker = L.marker(new L.LatLng(a[0], a[1]));
-    markers.addLayer(marker);
-  }
-  map.addLayer(markers);
-</script>
-
-<script>
-$(document).ready(function() {
-
-  $(window).scroll(function () {
-      //if you hard code, then use console
-      //.log to determine when you want the
-      //nav bar to stick.
-    //  console.log($(window).scrollTop())
-    if ($(window).scrollTop() > 200) {
-      $('#nav_bar').addClass('navbar-fixed');
-    }
-    if ($(window).scrollTop() < 201) {
-      $('#nav_bar').removeClass('navbar-fixed');
+  var timelineControlP = L.timelineSliderControl({
+    start: new Date ("1939-08-01").getTime(),
+	  end: new Date ("1941-03-31").getTime(),
+    waitToUpdateMap: true,
+    showTicks: true,
+	duration: 50000,
+    formatOutput: function(date) {
+      return new Date(date).toLocaleDateString();
     }
   });
-});
+
+  pre.addTo(mapPre);
+  hospitals.addTo(mapPre);
+  airRaids.addTo(mapPre);
+  events.addTo(mapPre);
+
+  timelineControlP.addTo(mapPre);
+  timelineControlP.addTimelines(hospitals,airRaids, events, pre);
 </script>
+
+<!-- Italy Map -->
 <script>
-function onEachFeature (feature, layer) {
-  var content = '<table>';
-  if (feature.properties){
-    for (var p in feature.properties) {
-      content += '<tr><td>' + p + ': ' + '</td><td>' + feature.properties[p] + '</td></tr>';
+  function onEachFeature (feature, layer) {
+    var content = '<table>';
+    if (feature.properties){
+      for (var p in feature.properties) {
+        content += '<tr><td>' + p + ': ' + '</td><td>' + feature.properties[p] + '</td></tr>';
+      }
+      layer.bindPopup(content);
     }
-    layer.bindPopup(content);
   }
-}
 
-var borderStyle = {
-  "color": "grey",
-  "weight": 1,
-  "opacity": 1,
-  "fillopacity": 0,
-  "fillColor": "#ffffff"
-};
-
-var getInterval = function (feature) {
-  return {
-    start: new Date (feature.properties.date).getTime(),
-    end: new Date ("1946-01-01").getTime()
+  var getInterval = function (feature) {
+    return {
+      start: new Date (feature.properties.date).getTime(),
+      end: new Date ("1946-01-01").getTime()
+    };
   };
-};
 
-var bastogne = L.timeline(malgreNousBastogne, {
-  getInterval: getInterval,
-  onEachFeature: onEachFeature,
-  waitToUpdateMap: true
-});
+  var borderStyle = {
+    "color": "grey",
+    "weight": 1,
+    "opacity": 1,
+    "fillopacity": 0,
+    "fillColor": "#ffffff"
+  };
 
-var timelineControl = L.timelineSliderControl({
-  start: new Date ("1944-11-28").getTime(),
-  end: new Date ("1945-02-01").getTime(),
-  duration: 25000,
-  formatOutput: function (date) {
-    return new Date (date).toLocaleDateString();
-  }
-});
-
-var mybounds = L.latLngBounds([49.30, 5.50], [51.90, 6.80]);
-var mapBastogne = L.map('mapBastogne', {zoomControl: false, maxBounds: mybounds}).setView([50.0, 6.10],7);
-
-L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
-  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-  subdomains: 'abcd',
-  maxZoom: 19,
-  minZoom: 7,
-  edgeBufferTiles: 2,
- // bounds: mybounds
-}).addTo(map);
-
-L.control.zoom({
-  position:'topright'
-}).addTo(map);
-
-
-$.getJSON("./shapefiles/bordersGeoJson/April_30_1941.geojson", function(data) {
-  L.geoJSON(data, {
-    style: borderStyle
-    }).addTo(map);
+  var italy = L.timeline(malgreNousItaly, {
+    getInterval: getInterval,
+    onEachFeature: onEachFeature,
+    waitToUpdateMap: true
   });
 
-hospitals.addTo(mapBastogne);
-airRaids.addTo(mapBastogne);
-events.addTo(mapBastogne);
-ss.addTo(mapBastogne);
-bastogne.addTo(mapBastogne);
-bastogne.bringToBack();
-timelineControl.addTo(mapBastogne);
-timelineControl.addTimelines(bastogne, ss, hospitals, airRaids, events);
+  var timelineControl = L.timelineSliderControl({
+    start: new Date ("1943-06-01").getTime(),
+    end: new Date ("1945-06-01").getTime(),
+    duration: 25000,
+    formatOutput: function (date) {
+      return new Date (date).toLocaleDateString();
+    }
+  });
+
+  var mybounds = L.latLngBounds([36.72, 7.14],[46.85, 14.87]);
+  var mapItaly = L.map('mapItaly', {zoomControl: false, maxBounds: mybounds}).setView([41.7, 12.30],6);
+
+  L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+    subdomains: 'abcd',
+    maxZoom: 19,
+    minZoom: 6,
+    edgeBufferTiles: 2,
+   // bounds: mybounds
+  }).addTo(mapItaly);
+
+  L.control.zoom({
+    position:'topright'
+  }).addTo(mapItaly);
+
+  $.getJSON("../shapefiles/bordersGeoJson/April_30_1941.geojson", function(data) {
+    L.geoJSON(data, {
+      style: borderStyle
+    }).addTo(mapItaly);
+    });
+
+
+  italy.addTo(mapItaly);
+  timelineControl.addTo(mapItaly);
+  timelineControl.addTimelines(italy);
 </script>
+
+<!-- Incorporation -->
+<script>
+    var mapIncorp = L.map('mapIncorp').setView([48.06, 7.59], 6);
+    mapIncorp.scrollWheelZoom.disable();
+    mapIncorp.dragging.disable();
+    mapIncorp.doubleClickZoom.disable();
+    var borderStyle = {
+      "color": "grey",
+      "weight": 1,
+      "opacity": 1,
+      "fillopacity": 0,
+      "fillColor": "#ffffff"
+    };
+
+    L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+  	  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+  	  subdomains: 'abcd',
+  	  maxZoom: 19,
+      edgeBufferTiles: 2
+    }).addTo(mapIncorp);
+
+    var timelineControlI = L.timelineSliderControl({
+      start: new Date ("1943-02-01").getTime(),
+  	  end: new Date ("1944-06-07").getTime(),
+      waitToUpdateMap: true,
+      showTicks: true,
+  	  duration: 50000,
+      formatOutput: function(date) {
+        return new Date(date).toLocaleDateString();
+      }
+    });
+
+    hospitals.addTo(mapIncorp);
+    airRaids.addTo(mapIncorp);
+    events.addTo(mapIncorp);
+    post.addTo(mapIncorp);
+    $.getJSON("../shapefiles/bordersGeoJson/April_30_1941.geojson", function(data) {
+      L.geoJSON(data, {
+        style: borderStyle
+      }).addTo(mapIncorp);
+    });
+
+    timelineControlI.addTo(mapIncorp);
+    timelineControlI.addTimelines(hospitals,airRaids, events, post);
+</script>
+
+<!-- Normandy Map -->
+<script>
+  function onEachFeature (feature, layer) {
+    var content = '<table>';
+    if (feature.properties){
+      for (var p in feature.properties) {
+        content += '<tr><td>' + p + ': ' + '</td><td>' + feature.properties[p] + '</td></tr>';
+      }
+      layer.bindPopup(content);
+    }
+  }
+
+  var getInterval = function (feature) {
+    return {
+      start: new Date (feature.properties.date).getTime(),
+      end: new Date ("1946-01-01").getTime()
+    };
+  };
+
+  var normandie = L.timeline(malgreNousNormandy, {
+    getInterval: getInterval,
+    onEachFeature: onEachFeature,
+    waitToUpdateMap: true
+  });
+
+  var timelineControl = L.timelineSliderControl({
+    start: new Date ("1944-06-01").getTime(),
+    end: new Date ("1944-09-01").getTime(),
+    duration: 25000,
+    formatOutput: function (date) {
+      return new Date (date).toLocaleDateString();
+    }
+  });
+
+  var mybounds = L.latLngBounds([48.0, -3.10],[50.0, 2.17]);
+  var mapNormandy = L.map('mapNormandy', {zoomControl: false, maxBounds: mybounds}).setView([49.2, -0.5],9);
+
+  L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+    subdomains: 'abcd',
+    maxZoom: 19,
+    minZoom: 9,
+    edgeBufferTiles: 2,
+    bounds: mybounds
+  }).addTo(mapNormandy);
+
+  L.control.zoom({
+    position:'topright'
+  }).addTo(mapNormandy);
+
+
+  normandie.addTo(mapNormandy);
+  timelineControl.addTo(mapNormandy);
+  timelineControl.addTimelines(normandie);
+</script>
+
+<!-- Duration SS Map -->
+<script>
+  function onEachFeature (feature, layer) {
+    var content = '<table>';
+    if (feature.properties){
+      for (var p in feature.properties) {
+        content += '<tr><td>' + p + ': ' + '</td><td>' + feature.properties[p] + '</td></tr>';
+      }
+      layer.bindPopup(content);
+    }
+  }
+
+  var getInterval = function (feature) {
+    return {
+      start: new Date (feature.properties.date).getTime(),
+      end: new Date ("1946-01-01").getTime()
+    };
+  };
+
+  var borderStyle = {
+    "color": "grey",
+    "weight": 1,
+    "opacity": 1,
+    "fillopacity": 0,
+    "fillColor": "#ffffff"
+  };
+
+  var germany = L.timeline(malgreNousGermany, {
+    getInterval: getInterval,
+    onEachFeature: onEachFeature,
+    waitToUpdateMap: true
+  });
+
+  var timelineControl = L.timelineSliderControl({
+    start: new Date ("1944-07-01").getTime(),
+    end: new Date ("1944-12-01").getTime(),
+    duration: 25000,
+    formatOutput: function (date) {
+      return new Date (date).toLocaleDateString();
+    }
+  });
+
+  var mybounds = L.latLngBounds([47.70, 5.77],[54.31, 16.02]);
+  var mapSS = L.map('mapSS', {zoomControl: false, maxBounds: mybounds}).setView([51.7, 10.30],6);
+
+  L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+    subdomains: 'abcd',
+    maxZoom: 19,
+    minZoom: 6,
+    edgeBufferTiles: 2,
+   // bounds: mybounds
+  }).addTo(mapSS);
+
+  L.control.zoom({
+    position:'topright'
+  }).addTo(mapSS);
+
+  $.getJSON("./shapefiles/bordersGeoJson/April_30_1941.geojson", function(data) {
+    L.geoJSON(data, {
+      style: borderStyle
+    }).addTo(mapSS);
+    });
+
+  hospitals.addTo(mapSS);
+  airRaids.addTo(mapSS);
+  events.addTo(mapSS);
+  ss.addTo(mapSS);
+  germany.addTo(mapSS);
+  timelineControl.addTo(mapSS);
+  timelineControl.addTimelines(germany, hospitals, airRaids, events, ss);
+</script>
+
+<!-- Battle of Bastogne -->
+<script>
+  function onEachFeature (feature, layer) {
+    var content = '<table>';
+    if (feature.properties){
+      for (var p in feature.properties) {
+        content += '<tr><td>' + p + ': ' + '</td><td>' + feature.properties[p] + '</td></tr>';
+      }
+      layer.bindPopup(content);
+    }
+  }
+
+  var borderStyle = {
+    "color": "grey",
+    "weight": 1,
+    "opacity": 1,
+    "fillopacity": 0,
+    "fillColor": "#ffffff"
+  };
+
+  var getInterval = function (feature) {
+    return {
+      start: new Date (feature.properties.date).getTime(),
+      end: new Date ("1946-01-01").getTime()
+    };
+  };
+
+  var bastogne = L.timeline(malgreNousBastogne, {
+    getInterval: getInterval,
+    onEachFeature: onEachFeature,
+    waitToUpdateMap: true
+  });
+
+  var timelineControl = L.timelineSliderControl({
+    start: new Date ("1944-11-28").getTime(),
+    end: new Date ("1945-02-01").getTime(),
+    duration: 25000,
+    formatOutput: function (date) {
+      return new Date (date).toLocaleDateString();
+    }
+  });
+
+  var mybounds = L.latLngBounds([49.30, 5.50], [51.90, 6.80]);
+  var mapBastogne = L.map('mapBastogne', {zoomControl: false, maxBounds: mybounds}).setView([50.0, 6.10],7);
+
+  L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+    subdomains: 'abcd',
+    maxZoom: 19,
+    minZoom: 7,
+    edgeBufferTiles: 2,
+   // bounds: mybounds
+  }).addTo(mapBastogne);
+
+  L.control.zoom({
+    position:'topright'
+  }).addTo(mapBastogne);
+
+
+  $.getJSON("./shapefiles/bordersGeoJson/April_30_1941.geojson", function(data) {
+    L.geoJSON(data, {
+      style: borderStyle
+    }).addTo(mapBastogne);
+    });
+
+  hospitals.addTo(mapBastogne);
+  airRaids.addTo(mapBastogne);
+  events.addTo(mapBastogne);
+  ss.addTo(mapBastogne);
+  bastogne.addTo(mapBastogne);
+  bastogne.bringToBack();
+  timelineControl.addTo(mapBastogne);
+  timelineControl.addTimelines(bastogne, ss, hospitals, airRaids, events);
+</script>
+
+<!-- Battle of Berlin -->
+<script>
+  function onEachFeature (feature, layer) {
+    var content = '<table>';
+    if (feature.properties){
+      for (var p in feature.properties) {
+        content += '<tr><td>' + p + ': ' + '</td><td>' + feature.properties[p] + '</td></tr>';
+      }
+      layer.bindPopup(content);
+    }
+  };
+
+  var getInterval = function (feature) {
+    return {
+      start: new Date (feature.properties.date).getTime(),
+      end: new Date ("1946-01-01").getTime()
+    };
+  };
+
+  var borderStyle = {
+    "color": "grey",
+    "weight": 1,
+    "opacity": 1,
+    "fillopacity": 0,
+    "fillColor": "#ffffff"
+  };
+
+  var berlin = L.timeline(malgreNousBerlin, {
+    getInterval: getInterval,
+    onEachFeature: onEachFeature,
+    waitToUpdateMap: true
+  });
+
+  var timelineControl = L.timelineSliderControl({
+    start: new Date ("1944-06-01").getTime(),
+    end: new Date ("1945-06-01").getTime(),
+    duration: 25000,
+    formatOutput: function (date) {
+      return new Date (date).toLocaleDateString();
+    }
+  });
+
+  var mybounds = L.latLngBounds([52.20, 13.00],[53.2, 14.50]);
+  var mapBerlin = L.map('mapBerlin', {zoomControl: false, maxBounds: mybounds}).setView([52.7, 13.30],9);
+
+  L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+    subdomains: 'abcd',
+    maxZoom: 19,
+    minZoom: 8,
+    edgeBufferTiles: 2,
+   // bounds: mybounds
+  }).addTo(mapBerlin);
+
+  L.control.zoom({
+    position:'topright'
+  }).addTo(mapBerlin);
+
+  $.getJSON("./shapefiles/bordersGeoJson/April_30_1943.geojson", function(data) {
+    L.geoJSON(data, {
+      style: borderStyle
+    }).addTo(mapBerlin);
+    });
+
+  bberlin.addTo(mapBerlin);
+  berlin.addTo(mapBerlin);
+  timelineControl.addTo(mapBerlin);
+  timelineControl.addTimelines(berlin, bberlin);
+</script>
+
 
 </body>
 </html>
