@@ -4,6 +4,7 @@
   <title> Malgre Nous </title>
 
   <!-- Style Sheets -->
+  <link rel="stylesheet" href="./style/w3.css">
   <link rel="stylesheet" href="./style/leaflet.css"/>
   <link rel="stylesheet" href="./style/mystyle.css"/>
   <link rel="stylesheet" href="./style/MarkerCluster.css" />
@@ -35,8 +36,16 @@
   <!-- Points -->
   <script src="./points/ISO_no_unknown.js"></script>
   <script src="./points/all.js"></script>
-  <script src="./points/italy.js"></script>
+  <script src="./maps/bastogne.js"></script>
+  <script src="./maps/berlin.js"></script>
+  <script src="./maps/germany.js"></script>
+  <script src="./maps/italy.js"></script>
+  <script src="./maps/normandie.js"></script>
+  <script src="./maps/tournant.js"></script>
 
+  <style>
+    .mySlides {display:none}
+  </style>
 </head>
 
 <body>
@@ -58,40 +67,131 @@
   <div class="box-main">
   <!-- comment -->
 
-  <br>
-  <br>
-  <br>
-  <a name ="intro"></a>
-  <h2> INTRO</h2>
-  <p>A consequence of the defeat of France in the Franco-Prussian War of 1870 was the creation of the territory known as Alsace-Lorraine.  The Treaty of Frankfurt dictated the terms of France’s defeat: large reparations, the dissolution of the Second Empire, and the concession of Alsace and north eastern Lorraine to Prussia.   While this new boundary satisfied many political and military aims of Prussia, the annexation was not painless as the people of the territory maintained strong pro French sentiments.  Within France, an obsession over the humiliating defeat inspired powerful sentiments of desire to restore to France the ‘lost provinces’ of Alsace and Lorraine. The Treaty of Versailles returned Alsace-Lorraine to France where it remained for the interwar years.
-  In June of 1940, the capitulation of France left Alsace-Lorraine to the mercy of Nazi Germany. Under the pretext of uniting the people of Alsace-Lorraine with the rest of Germany, the region was annexed directly, unlike the rest of France which was partitioned into Vichy France and the Occupied Zone. </p>
-  <p>As one element of a broad and oppressive effort to Germanize the region, young men from Alsace-Lorraine were incorporated by force into the Wehrmacht and the Waffen-SS. Between 1942 and 1945, more than 130,000 men from Alsace and Lorraine were incorporated into the German military. Most perceptions of the Malgre-Nous and their experience center around the Eastern Front and especially on the Tambov prisoner of war camp where many were held. This web project seeks to lay the foundations for a more complete view of the experience of the Malgre-Nous by using maps and visualizations to demonstrate that the Malgre-Nous were active on every front. Linking personal memoirs with the locations of death provide a reference point for the feelings of the Malgre-nous in their efforts to understand their sense of place and identity amidst the many landscapes of World War II. 
-</p>
-<br>
-<hr>
+  <!-- INTRODUCTION -->
+    <a name ="intro"></a>
+    <br>
+    <br>
+    <h2> INTRO</h2>
+    <p>A consequence of the defeat of France in the Franco-Prussian War of 1870 was the creation of the territory known as Alsace-Lorraine.  The Treaty of Frankfurt dictated the terms of France’s defeat: large reparations, the dissolution of the Second Empire, and the concession of Alsace and north eastern Lorraine to Prussia.   While this new boundary satisfied many political and military aims of Prussia, the annexation was not painless as the people of the territory maintained strong pro French sentiments.  Within France, an obsession over the humiliating defeat inspired powerful sentiments of desire to restore to France the ‘lost provinces’ of Alsace and Lorraine. The Treaty of Versailles returned Alsace-Lorraine to France where it remained for the interwar years.
+      In June of 1940, the capitulation of France left Alsace-Lorraine to the mercy of Nazi Germany. Under the pretext of uniting the people of Alsace-Lorraine with the rest of Germany, the region was annexed directly, unlike the rest of France which was partitioned into Vichy France and the Occupied Zone. </p>
+      <p>As one element of a broad and oppressive effort to Germanize the region, young men from Alsace-Lorraine were incorporated by force into the Wehrmacht and the Waffen-SS. Between 1942 and 1945, more than 130,000 men from Alsace and Lorraine were incorporated into the German military. Most perceptions of the Malgre-Nous and their experience center around the Eastern Front and especially on the Tambov prisoner of war camp where many were held. This web project seeks to lay the foundations for a more complete view of the experience of the Malgre-Nous by using maps and visualizations to demonstrate that the Malgre-Nous were active on every front. Linking personal memoirs with the locations of death provide a reference point for the feelings of the Malgre-nous in their efforts to understand their sense of place and identity amidst the many landscapes of World War II.
+    </p>
+    <br>
+    <hr>
 
-  <a name ="part1"></a>
-  <br>
-  <h2> LOCATIONS OF DEATH </h2>
-  <br>
-  <div id="map" style="width: 100%; height: 700px; border: 1px solid #333;"></div>
-  <button class="link" id="link1"> Full Map </button>
-<br>
-<br>
-<hr>
+  <!-- PART 1 -->
+    <a name ="part1"></a>
+    <h2> LOCATIONS OF DEATH </h2>
+    <video class="videos" width="100%"  height="525px" controls="controls">
+      <source src="./assets/videos/New.mp4" type="video/mp4">
+      Your browser does not support HTML5 video.
+    </video>
+    <br>
+    <br>
+    <video class="videos" width="100%"  height="525px" controls="controls">
+      <source src="./assets/videos/cumulative.mp4" type="video/mp4">
+      Your browser does not support HTML5 video.
+    </video>
+    <br>
+    <br>
+    <br>
+    <div class="w3-content" style="max-width:1000">
+      <img class="mySlides" src="./assets/images/frame001.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame002.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame003.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame004.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame005.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame006.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame007.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame008.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame009.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame010.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame011.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame012.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame013.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame014.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame015.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame016.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame017.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame018.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame019.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame020.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame021.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame022.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame023.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame024.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame025.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame026.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame027.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame028.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame029.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame030.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame031.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame032.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame033.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame034.png" style="width:100%">
+      <img class="mySlides" src="./assets/images/frame035.png" style="width:100%">
+    </div>
 
+    <div class="w3-center">
+      <div class="w3-section">
+        <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#171 Prev</button>
+        <button class="w3-button w3-display-right" onclick="plusDivs(1)">Next &#187</button>
+      </div>
+      <button class="w3-button demo" onclick="currentDiv(1)">Start : July 1942</button>
+      <button class="w3-button demo" onclick="currentDiv(7)">1943</button>
+      <button class="w3-button demo" onclick="currentDiv(19)">1944</button>
+      <button class="w3-button demo" onclick="currentDiv(31)">1945</button>
+      <button class="w3-button demo" onclick="currentDiv(35)">End : May 1945</button>
+    </div>
+    <br>
+    <div id="map" style="width: 100%; height: 700px; border: 1px solid #333;"></div>
+    <button class="link" id="link1"> Full Map </button>
+    <br>
+    <br>
+    <br>
+    <hr>
+
+  <!-- PART 2 -->
   <a name ="part2"></a>
   <br>
   <h2> CASE STUDY </h2>
   <br>
-  <div id="map" style="width: 100%; height: 700px; border: 1px solid #333;"></div>
-  <button class="link" id="link1"> Full Map </button>
-<br>
-<br>
-<hr>
+  <div id="mapPre" style="width: 100%; height: 700px; border: 1px solid #333;"></div>
+  <button class="link" id="link2"> Full Map </button>
+  <br>
+  <br>
+  <div id="mapItaly" style="width: 100%; height: 700px; border: 1px solid #333;"></div>
+  <button class="link" id="link3"> Full Map </button>
+  <br>
+  <br>
+  <div id="mapIncorp" style="width: 100%; height: 700px; border: 1px solid #333;"></div>
+  <button class="link" id="link4"> Full Map </button>
+  <br>
+  <br>
+  <div id="mapNormandy" style="width: 100%; height: 700px; border: 1px solid #333;"></div>
+  <button class="link" id="link5"> Full Map </button>
+  <br>
+  <br>
+  <div id="mapSS" style="width: 100%; height: 700px; border: 1px solid #333;"></div>
+  <button class="link" id="link6"> Full Map </button>
+  <br>
+  <br>
+  <div id="mapBastogne" style="width: 100%; height: 700px; border: 1px solid #333;"></div>
+  <a href="/maps/bastogne.html"><button class="link" id="link7"> Full Map </button></a>
+  <br>
+  <br>
+  <div id="mapBerlin" style="width: 100%; height: 700px; border: 1px solid #333;"></div>
+  <button class="link" id="link8"> Full Map </button>
+  <br>
+  <br>
+  <hr>
 
   <a name ="conclusion"></a>
   <br>
+
+
+  <!-- CONCLUSION -->
   <h2> CONCLUSION </h2>
   <br>
 <br>
@@ -102,7 +202,40 @@
 
 
 
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
 
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function currentDiv(n) {
+  showDivs(slideIndex = n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+     dots[i].className = dots[i].className.replace(" w3-blue", "");
+  }
+  //This is for the images
+  x[slideIndex-1].style.display = "block";
+  //this is for the buttons
+  if (slideIndex < 7) {dots[0].className += " w3-blue"};
+  if (slideIndex < 19 && slideIndex >= 7) {dots[1].className += " w3-blue"};
+  if (slideIndex < 31 && slideIndex >= 19) {dots[2].className += " w3-blue"};
+  if (slideIndex < 35 && slideIndex >= 31) {dots[3].className += " w3-blue"};
+  if (slideIndex == 35) {dots[4].className += " w3-blue"};
+}
+</script>
 
  <script>
     var map = L.map('map').setView([57.06, 29.94], 4);
@@ -144,5 +277,79 @@ $(document).ready(function() {
   });
 });
 </script>
+<script>
+function onEachFeature (feature, layer) {
+  var content = '<table>';
+  if (feature.properties){
+    for (var p in feature.properties) {
+      content += '<tr><td>' + p + ': ' + '</td><td>' + feature.properties[p] + '</td></tr>';
+    }
+    layer.bindPopup(content);
+  }
+}
+
+var borderStyle = {
+  "color": "grey",
+  "weight": 1,
+  "opacity": 1,
+  "fillopacity": 0,
+  "fillColor": "#ffffff"
+};
+
+var getInterval = function (feature) {
+  return {
+    start: new Date (feature.properties.date).getTime(),
+    end: new Date ("1946-01-01").getTime()
+  };
+};
+
+var bastogne = L.timeline(malgreNousBastogne, {
+  getInterval: getInterval,
+  onEachFeature: onEachFeature,
+  waitToUpdateMap: true
+});
+
+var timelineControl = L.timelineSliderControl({
+  start: new Date ("1944-11-28").getTime(),
+  end: new Date ("1945-02-01").getTime(),
+  duration: 25000,
+  formatOutput: function (date) {
+    return new Date (date).toLocaleDateString();
+  }
+});
+
+var mybounds = L.latLngBounds([49.30, 5.50], [51.90, 6.80]);
+var mapBastogne = L.map('mapBastogne', {zoomControl: false, maxBounds: mybounds}).setView([50.0, 6.10],7);
+
+L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+  subdomains: 'abcd',
+  maxZoom: 19,
+  minZoom: 7,
+  edgeBufferTiles: 2,
+ // bounds: mybounds
+}).addTo(map);
+
+L.control.zoom({
+  position:'topright'
+}).addTo(map);
+
+
+$.getJSON("./shapefiles/bordersGeoJson/April_30_1941.geojson", function(data) {
+  L.geoJSON(data, {
+    style: borderStyle
+    }).addTo(map);
+  });
+
+hospitals.addTo(mapBastogne);
+airRaids.addTo(mapBastogne);
+events.addTo(mapBastogne);
+ss.addTo(mapBastogne);
+bastogne.addTo(mapBastogne);
+bastogne.bringToBack();
+timelineControl.addTo(mapBastogne);
+timelineControl.addTimelines(bastogne, ss, hospitals, airRaids, events);
+</script>
+
 </body>
 </html>
