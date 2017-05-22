@@ -89,7 +89,7 @@
     <br>
     <br>
     <video class="videos" width="100%"  height="525px" controls="controls">
-      <source src="./assets/videos/cumulative.mp4" type="video/mp4">
+      <source src="./assets/videos/Cumulative.mp4" type="video/mp4">
       Your browser does not support HTML5 video.
     </video>
     <br>
@@ -157,32 +157,45 @@
   <br>
   <h2> CASE STUDY </h2>
   <br>
+  <p> Map showing situation before Bernard is incorporated into Wehrmacht [09/1939 - 03/1941] </p>
   <div id="mapPre" style="width: 100%; height: 700px; border: 1px solid #333;"></div>
-  <a href="/maps/pre.html"><button class="link" id="link2"> Full Map </button></a>
+  <a href="/malgre-nous/maps/pre.html"><button class="link" id="link2"> Full Map </button></a>
   <br>
   <br>
+
+  <p> Malgre-Nous deaths in Italy [07/1943 - 05/1945] </p>
   <div id="mapItaly" style="width: 100%; height: 700px; border: 1px solid #333;"></div>
-  <a href="/maps/italy.html"><button class="link" id="link3"> Full Map </button></a>
+  <a href="/malgre-nous/maps/italy.html"><button class="link" id="link3"> Full Map </button></a>
   <br>
   <br>
+
+  <p> Map showing various locations Bernard went during his integration into the Wehrmacht [02/1943 - 06/06/1944] </p>
   <div id="mapIncorp" style="width: 100%; height: 700px; border: 1px solid #333;"></div>
-  <a href="/maps/incorp.html"><button class="link" id="link4"> Full Map </button></a>
+  <a href="/malgre-nous/maps/incorp.html"><button class="link" id="link4"> Full Map </button></a>
   <br>
   <br>
+
+  <p> Malgre-Nous deaths at the Normandy Front [06/1944 - 08/1944]
   <div id="mapNormandy" style="width: 100%; height: 700px; border: 1px solid #333;"></div>
-  <a href="/maps/normandie.html"><button class="link" id="link5"> Full Map </button></a>
+  <a href="/malgre-nous/maps/normandie.html"><button class="link" id="link5"> Full Map </button></a>
   <br>
   <br>
+
+  <p> Map showing Malgre-Nous deaths while Bernard was incorporated in the SS [07/1944 - 11/1944]
   <div id="mapSS" style="width: 100%; height: 700px; border: 1px solid #333;"></div>
-  <a href="/maps/ss.html"><button class="link" id="link6"> Full Map </button></a>
+  <a href="/malgre-nous/maps/ss.html"><button class="link" id="link6"> Full Map </button></a>
   <br>
   <br>
+
+  <p> Ardennes Counteroffensive [12/1944 - 01/1945]
   <div id="mapBastogne" style="width: 100%; height: 700px; border: 1px solid #333;"></div>
-  <a href="/maps/bastogne.html"><button class="link" id="link7"> Full Map </button></a>
+  <a href="/malgre-nous/maps/bastogne.html"><button class="link" id="link7"> Full Map </button></a>
   <br>
   <br>
+
+  <p> Berlin [06/1944 - 05/1945]
   <div id="mapBerlin" style="width: 100%; height: 700px; border: 1px solid #333;"></div>
-  <a href="/maps/berlin.html"><button class="link" id="link8"> Full Map </button></a>
+  <a href="/malgre-nous/maps/berlin.html"><button class="link" id="link8"> Full Map </button></a>
   <br>
   <br>
   <hr>
@@ -376,7 +389,7 @@
     position:'topright'
   }).addTo(mapItaly);
 
-  $.getJSON("../shapefiles/bordersGeoJson/April_30_1941.geojson", function(data) {
+  $.getJSON("./shapefiles/bordersGeoJson/April_30_1941.geojson", function(data) {
     L.geoJSON(data, {
       style: borderStyle
     }).addTo(mapItaly);
@@ -424,7 +437,7 @@
     airRaids.addTo(mapIncorp);
     events.addTo(mapIncorp);
     post.addTo(mapIncorp);
-    $.getJSON("../shapefiles/bordersGeoJson/April_30_1941.geojson", function(data) {
+    $.getJSON("./shapefiles/bordersGeoJson/April_30_1941.geojson", function(data) {
       L.geoJSON(data, {
         style: borderStyle
       }).addTo(mapIncorp);
