@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Malgre Nous </title>
+  <link rel="stylesheet" href="../style/leaflet.css"/>
+  <link rel="stylesheet" href="../style/mystyle.css"/>
+  <link rel="stylesheet" href="../style/MarkerCluster.css" />
+  <link rel="stylesheet" href="../style/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="../style/layout.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oxygen">
+
+  <script src="../scripts/leaflet.js"></script>
+  <script src="../scripts/leaflet.edgebuffer.js"></script>
+  <script src="../scripts/jquery-2.1.1.min.js"></script>
+  <script src="../scripts/leaflet.markercluster-src.js"></script>
+  <script src="../scripts/timeline/leaflet.timeline.js"></script>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.css">
+  <script src="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.js"></script>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="germany.js"></script>
+</head>
+
+<body style="margin: 0 auto"> 
+	<div id="map" style="width:100vw; height:100vh"></div> <!-- Map -->
+
+  <script>
+  function onEachFeature (feature, layer) {
+    var content = '<table>';
+    if (feature.properties){
+      for (var p in feature.properties) {
+        content += '<tr><td>' + p + ': ' + '</td><td>' + feature.properties[p] + '</td></tr>';
+      }
+      layer.bindPopup(content);
+    }
+  }
+
+  var getInterval = function (feature) {
+    return {
+      start: new Date (feature.properties.date).getTime(),
+      end: new Date ("1946-01-01").getTime()
+    };
+  };
+
+  var borderStyle = {
+    "color": "grey",
+    "weight": 1,
+    "opacity": 1,
+    "fillopacity": 0,
+    "fillColor": "#ffffff"
+  };
+
+  var germany = L.timeline(malgreNousGermany, {
+    getInterval: getInterval,
+    onEachFeature: onEachFeature,
+    waitToUpdateMap: true
+  });
+
+  var timelineControl = L.timelineSliderControl({
+    start: new Date ("1944-07-01").getTime(),
+    end: new Date ("1944-12-01").getTime(),
+    duration: 25000,
+    formatOutput: function (date) {
+      return new Date (date).toLocaleDateString();
+    }
+  });
+
+  var mybounds = L.latLngBounds([47.70, 5.77],[54.31, 16.02]);
+  var map = L.map('map', {zoomControl: false, maxBounds: mybounds}).setView([51.7, 10.30],7);
+
+  L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+	  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+	  subdomains: 'abcd',
+	  maxZoom: 19,
+    minZoom: 7,
+    edgeBufferTiles: 2,
+   // bounds: mybounds
+  }).addTo(map);
+
+  L.control.zoom({
+    position:'topright'
+  }).addTo(map);
+
+  $.getJSON("../shapefiles/bordersGeoJson/April_30_1941.geojson", function(data) {
+    L.geoJSON(data, {
+      style: borderStyle
+      }).addTo(map);
+    });
+
+
+  germany.addTo(map);
+  timelineControl.addTo(map);
+  timelineControl.addTimelines(germany);
+  </script>
+</body>
+
+</html>
